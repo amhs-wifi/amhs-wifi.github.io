@@ -1,10 +1,16 @@
+// 2024.12.07 - modified by Dom Pannone for Wi-Fi pilot Project on Flagship Columbia!
+
 // Parse paramaters
 var base_grant_url = decodeURIComponent(GetURLParameter("base_grant_url"));
-var user_continue_url = decodeURIComponent(GetURLParameter("user_continue_url"));
+// Make.com webhook:
+var user_continue_url = "https://hook.us2.make.com/js4kmicrcfvuzvwpjkmtmjqkhwfodklj";
 var node_mac = GetURLParameter("node_mac");
 var client_ip = GetURLParameter("client_ip");
 var client_mac = GetURLParameter("client_mac");
+var vessel = GetURLParameter("vessel");
+var data = {};
 
+/*
 // Print Meraki provided paramaters for Debugging State
 console.log("user_continue_url: "+user_continue_url);
 console.log("client_ip: "+client_ip);
@@ -13,6 +19,7 @@ document.getElementById("userContinueURL").innerHTML = user_continue_url;
 document.getElementById("clientIP").innerHTML = client_ip;
 document.getElementById("clientMAC").innerHTML = client_mac;
 document.getElementById("nodeMAC").innerHTML = node_mac;
+*/
 
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
@@ -28,26 +35,25 @@ document.getElementById('loginForm').onsubmit= function(e){
 // (you could override this url to send the user to a home page)
 // ****************** 
 function authUser(){
-
     var loginUrl = base_grant_url;
-    if(user_continue_url !== "undefined"){
-        loginUrl += "?continue_url="+user_continue_url;
-    }
-    alert("Logging in... " + loginUrl);
-    // redirect browser to meraki auth URL.
+    user_continue_url += "?vessel=" + vessel + "&email=" + btoa(data.email) + "&cip=" + client_ip + "&cmac=" client_mac +"&apmac=" + node_mac
+    user_continue_url = encodeURIComponent(user_continue_url)
+    loginUrl += "?continue_url="+user_continue_url;
+    console.log("loginURL(Decoded): " + decodeURIComponent(loginUrl));
+    console.log("loginURL(Encoded): " + loginUrl);
     window.location.href = loginUrl;
 }
 
 // Button handler function to store the form data and login. 
 function login(){
     // send the data somewhere like a database
-    var data = {};
-    data.email = document.getElementById("email").value;
-    alert("Hello " + "\n"+"Thanks for providing your email: "+data.email);
-    console.log("Storing data to db...", data);
 
-    // Complete Login
-    authUser();
+    data.email = document.getElementById("email").value;
+    if (validateEmail(data.email))
+    {
+        // Complete Login
+        authUser();
+    }
 }
 
 // Helper function to parse URL
