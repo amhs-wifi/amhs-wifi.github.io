@@ -36,7 +36,7 @@ document.getElementById('loginForm').onsubmit= function(e){
 // ****************** 
 function authUser(){
     var loginUrl = base_grant_url;
-    user_continue_url += "?vessel="+vessel+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="client_mac+"&apmac="+node_mac;
+    user_continue_url += "?vessel="+vessel+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
     user_continue_url = encodeURIComponent(user_continue_url);
     loginUrl += "?continue_url="+user_continue_url;
     console.log("loginURL(Decoded): " + decodeURIComponent(loginUrl));
