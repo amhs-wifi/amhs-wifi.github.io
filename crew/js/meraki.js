@@ -3,7 +3,7 @@
 // Parse paramaters
 var base_grant_url = decodeURIComponent(GetURLParameter("base_grant_url"));
 // Make.com webhook:
-var user_continue_url = "https://hook.us2.make.com/js4kmicrcfvuzvwpjkmtmjqkhwfodklj";
+var user_continue_url = "https://hook.us2.make.com/zh84bj98611ifbps8z2xtyasowhjs5js";
 var node_mac = GetURLParameter("node_mac");
 var client_ip = GetURLParameter("client_ip");
 var client_mac = GetURLParameter("client_mac");
