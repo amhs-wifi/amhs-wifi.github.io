@@ -38,7 +38,7 @@ body {
 }
 
 #loginForm {
-    background: #8db399;
+    background: #F9F9F9;
     padding: 25px;
     margin: 150px 0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -99,7 +99,7 @@ fieldset {
     cursor: pointer;
     width: 100%;
     border: none;
-    background: #103359;
+    background: #1a1a1a;
     color: #FFF;
     margin: 0 0 5px;
     padding: 10px;
@@ -107,7 +107,7 @@ fieldset {
 }
 
 #loginForm button[type="submit"]:hover {
-    background: #226BBC;
+    background: #ac5353;
     -webkit-transition: background 0.3s ease-in-out;
     -moz-transition: background 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
