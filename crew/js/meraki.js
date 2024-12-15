@@ -13,13 +13,14 @@ var vessel = GetURLParameter("vessel");
 var data = {};
 const cookieName = "wifiUniqueDeviceID";
 
+checkAndRedirect();
+
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
     e.preventDefault(); //prevents default form submission process to allow login and validation
     login();
 }
 
-document.onload = checkAndRedirect;
 
 // Button handler function to store the form data and login. 
 function login(){
