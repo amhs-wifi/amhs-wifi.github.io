@@ -4,22 +4,13 @@
 var base_grant_url = decodeURIComponent(GetURLParameter("base_grant_url"));
 // Make.com webhook:
 var user_continue_url = "https://hook.us2.make.com/zh84bj98611ifbps8z2xtyasowhjs5js";
+var user_continue_url_original = GetURLParameter("user_continue_url");
 var node_mac = GetURLParameter("node_mac");
 var client_ip = GetURLParameter("client_ip");
 var client_mac = GetURLParameter("client_mac");
 var vessel = GetURLParameter("vessel");
 var data = {};
-
-/*
-// Print Meraki provided paramaters for Debugging State
-console.log("user_continue_url: "+user_continue_url);
-console.log("client_ip: "+client_ip);
-document.getElementById("baseGrantURL").innerHTML = base_grant_url;
-document.getElementById("userContinueURL").innerHTML = user_continue_url;
-document.getElementById("clientIP").innerHTML = client_ip;
-document.getElementById("clientMAC").innerHTML = client_mac;
-document.getElementById("nodeMAC").innerHTML = node_mac;
-*/
+const cookieName = "wifiUniqueDeviceID";
 
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
@@ -27,22 +18,7 @@ document.getElementById('loginForm').onsubmit= function(e){
     login();
 }
 
-// ******************
-// Login to Meraki by redirecting client to the base_grant_url 
-// 
-// The logingUrl will add a continue_url parameter for a final client
-// redirect to their intended site. 
-// (you could override this url to send the user to a home page)
-// ****************** 
-function authUser(){
-    var loginUrl = base_grant_url;
-    user_continue_url += "?vessel="+vessel+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
-    user_continue_url = encodeURIComponent(user_continue_url);
-    loginUrl += "?continue_url="+user_continue_url;
-    console.log("loginURL(Decoded): " + decodeURIComponent(loginUrl));
-    console.log("loginURL(Encoded): " + loginUrl);
-    window.location.href = loginUrl;
-}
+window.onload = checkAndRedirect;
 
 // Button handler function to store the form data and login. 
 function login(){
@@ -54,6 +30,21 @@ function login(){
         // Complete Login
         authUser();
     }
+}
+
+// if email is valid
+function authUser(){
+    var loginUrl = base_grant_url;
+    
+    user_continue_url += "?vessel="+vessel+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
+    user_continue_url = encodeURIComponent(user_continue_url);
+    
+    loginUrl += "?continue_url="+user_continue_url;
+
+    const uniqueID = generateUniqueID();
+    setCookie(cookieName, uniqueID, 24);
+    alert('cookie set, redirecting');
+    window.location.href = loginUrl;
 }
 
 // Helper function to parse URL
@@ -79,4 +70,45 @@ function validateEmail() {
         return false; // Prevent form submission
     }
     return true; // Allow form submission
+}
+
+function setCookie(name, value, hours) {
+    const date = new Date();
+    date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value}; ${expires}; path=/; Secure; SameSite=Strict`;
+}
+
+function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(cname) === 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+}
+
+function generateUniqueID() {
+    return 'id-' + Math.random().toString(36).substring(2, 16) + '-' + Date.now();
+}
+
+function checkAndRedirect() {
+    const redirectURL = user_continue_url_original;
+    const cookieValue = getCookie(cookieName);
+
+    if (cookieValue) {
+        // Cookie exists, redirect to another page
+        var loginUrl = base_grant_url;
+       
+        user_continue_url += "?vessel="+vessel+"&email=ReAuth&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
+        user_continue_url = encodeURIComponent(user_continue_url);
+        
+        loginUrl += "?continue_url="+user_continue_url;
+        
+        window.location.href = loginUrl;
+    } 
 }
