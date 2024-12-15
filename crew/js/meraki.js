@@ -43,7 +43,7 @@ function authUser(){
 
     const uniqueID = generateUniqueID();
     setCookie(cookieName, uniqueID, 24);
-alert('cookie;')
+
     window.location.href = loginUrl;
 }
 
