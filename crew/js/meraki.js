@@ -4,6 +4,7 @@
 var base_grant_url = decodeURIComponent(GetURLParameter("base_grant_url"));
 // Make.com webhook:
 var user_continue_url = "https://hook.us2.make.com/zh84bj98611ifbps8z2xtyasowhjs5js";
+
 var user_continue_url_original = GetURLParameter("user_continue_url");
 var node_mac = GetURLParameter("node_mac");
 var client_ip = GetURLParameter("client_ip");
@@ -18,7 +19,7 @@ document.getElementById('loginForm').onsubmit= function(e){
     login();
 }
 
-window.onload = checkAndRedirect;
+document.onload = checkAndRedirect;
 
 // Button handler function to store the form data and login. 
 function login(){
