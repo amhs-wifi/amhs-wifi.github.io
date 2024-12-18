@@ -1,33 +1,31 @@
 <!--
-for testing:
-https://amhs-wifi.github.io/public/?vessel=columbia&node_mac=ap_mac&client_mac=client_mac&client_ip=1.1.1.1&base_grant_url=http%3A//google.com
-
-This is a fork of code written by:
+This contains code written by:
+----
 Cory Guynn
 www.InternetOfLEGO.com
 2016
-
-Fork is by Dom Pannone/AMHS/DOT&PF 2024.12.07
-
+----
+Dom Pannone
+AMHS/DOT&PF 
+2024
+----
 LICENSE: MIT
-"Have Fun!, use and abuse"
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+      <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
-    <div class="container">  
-      
+    <div class="container">
       <form id="loginForm" action="#">
         <center>
         <p style="font-size: 12px; line-height: 1.5em; text-align:center;" >This network is provided solely for use by Vessel Crew and State of Alaska Employees.</p>
         <p style="font-size: 12px; line-height: 1.5em; text-align:center;" >Not for use by passengers/public.</p>
         <p style="margin-top:10px; font-size: 16px; font-weight:bold; color:black;">Thank you for being part of our team!</p>
-      </center>        
+        </center>        
         <center>
-                    <img src="./amhs-logo-crew.png" alt="Alaska Marine Highway Logo" style="width:256px; margin-top:15px; height:auto;">
-                </center>
+          <img src="./amhs-logo-crew.png" alt="Alaska Marine Highway Logo" style="width:256px; margin-top:15px; height:auto;">
+        </center>
         <br>
         <fieldset>
           <input id="email" placeholder="Your Email Address" type="email" tabindex="2" required>
@@ -35,19 +33,14 @@ LICENSE: MIT
         <fieldset>
           <button type="submit" >Access Free WiFi Now</button>
         </fieldset>
-         <p style="font-size: 14px; line-height: 1.5em; text-align:left;" >Entering an email address is required to use this system. By entering an email address and gaining access you agree to the terms of service, linked below.</p>
+        <p style="font-size: 14px; line-height: 1.5em; text-align:left;" >Entering an email address is required to use this system. By entering an email address and gaining access you agree to the terms of service, linked below.</p>
         <p style="text-align:center;"><a href="./tos/terms-of-service.html">Terms of Service</a></p>
       </form>
     </div>
-  <!--
-    <p><label>Base Grant URL: </label><label id="baseGrantURL"></label></p>
-    <p><label>User Continue URL: </label><label id="userContinueURL"></label></p>
-    <p><label>Client IP: </label><label id="clientIP"></label></p>
-    <p><label>Client MAC: </label><label id="clientMAC"></label></p>
-    <p><label>Access Point MAC: </label><label id="nodeMAC"></label></p>
-    -->
-    <center><div sytle="margin:auto;">
-      <span style="text-align:center"></span>
-  </div></center>
+    <center>
+      <div sytle="margin:auto;">
+        <span style="text-align:center"></span>
+      </div>
+    </center>
     <script src="./js/meraki.js"></script>
  </html>

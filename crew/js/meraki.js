@@ -12,18 +12,18 @@ var client_mac = GetURLParameter("client_mac");
 var vessel = GetURLParameter("vessel");
 var data = {};
 const cookieName = "wifiUniqueDeviceID";
-
+checkAndRedirect();
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    checkAndRedirect();
+    
+    document.getElementById('loginForm').onsubmit= function(e){
+        e.preventDefault(); //prevents default form submission process to allow login and validation
+        login();
+    }
+    
 });
 
 // Form Submit handler. 
-document.getElementById('loginForm').onsubmit= function(e){
-    e.preventDefault(); //prevents default form submission process to allow login and validation
-    login();
-}
-
 
 // Button handler function to store the form data and login. 
 function login(){

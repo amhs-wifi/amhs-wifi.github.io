@@ -4,6 +4,9 @@ Public Redirect: https://hook.us2.make.com/js4kmicrcfvuzvwpjkmtmjqkhwfodklj
 
 ?vessel=VESSL&email=EMAIL&cip=IPADDRESS&cmac=CMAC&apmac=APMAC
 
+for testing:
+https://amhs-wifi.github.io/public/?vessel=columbia&node_mac=ap_mac&client_mac=client_mac&client_ip=1.1.1.1&base_grant_url=http%3A//google.com
+
 
 https://hook.us2.make.com/zh84bj98611ifbps8z2xtyasowhjs5js?vessel=columbia&email=ZG9tLnBhbm5vbmVAZ21haWwuY29t&cip=123.123.123.123&cmac=12:12:12:12:12&&apmac=23:23:23:23:23
 
