@@ -113,7 +113,7 @@ function checkAndRedirect() {
         user_continue_url = encodeURIComponent(user_continue_url);
         
         loginUrl += "?continue_url="+user_continue_url;
-        
+        document.write('<!--');
         window.location.href = loginUrl;
     } 
 }
