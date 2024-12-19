@@ -1,13 +1,24 @@
 Test Gateway (Granting Device): https://hook.us2.make.com/fovoh2fx1xa5w7yocou3fsq1x3jy4x7x
 
+
 Crew Redirect: https://hook.us2.make.com/zh84bj98611ifbps8z2xtyasowhjs5js
 Public Redirect: https://hook.us2.make.com/js4kmicrcfvuzvwpjkmtmjqkhwfodklj
 
 ?vessel=VESSL&email=EMAIL&cip=IPADDRESS&cmac=CMAC&apmac=APMAC
 
-for testing(google):
+
+
+Public - for testing 
+(google):
 https://amhs-wifi.github.io/public/?vessel=columbia&node_mac=ap_mac&client_mac=client_mac&client_ip=1.1.1.1&base_grant_url=http%3A//google.com
 
+(Test Gateway):
+https://amhs-wifi.github.io/public/?vessel=VESSEL&node_mac=APMAC&client_mac=CMAC&client_ip=CIP&base_grant_url=https%3A%2F%2Fhook.us2.make.com%2Ffovoh2fx1xa5w7yocou3fsq1x3jy4x7x
 
-for testing(Test Gateway):
+
+
+
+Crew - for testing 
+(Test Gateway):
 https://amhs-wifi.github.io/crew/?vessel=VESSEL&node_mac=APMAC&client_mac=CMAC&client_ip=CIP&base_grant_url=https%3A%2F%2Fhook.us2.make.com%2Ffovoh2fx1xa5w7yocou3fsq1x3jy4x7x
+
