@@ -12,6 +12,7 @@ var client_mac = GetURLParameter("client_mac");
 var vessel = GetURLParameter("vessel");
 var data = {};
 const cookieName = "wifiUniqueDeviceID";
+
 checkAndRedirect();
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -22,8 +23,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     
 });
-
-// Form Submit handler. 
 
 // Button handler function to store the form data and login. 
 function login(){
@@ -41,12 +40,13 @@ function login(){
 function authUser(){
     var loginUrl = base_grant_url;
     
-    user_continue_url += "?vessel="+vessel+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
+    user_continue_url += "?vessel="+vessel+"&r=0"+"&email="+btoa(data.email)+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
     user_continue_url = encodeURIComponent(user_continue_url);
     
     loginUrl += "?continue_url="+user_continue_url;
 
-    const uniqueID = generateUniqueID();
+    //const uniqueID = generateUniqueID();
+    const uniqueID = btoa(data.email);
     setCookie(cookieName, uniqueID, 24);
 
     window.location.href = loginUrl;
@@ -109,7 +109,7 @@ function checkAndRedirect() {
         // Cookie exists, redirect to another page
         var loginUrl = base_grant_url;
        
-        user_continue_url += "?vessel="+vessel+"&email=ReAuth&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
+        user_continue_url += "?vessel="+vessel+"&r=1"+"&email="+cookieValue+"&cip="+client_ip+"&cmac="+client_mac+"&apmac="+node_mac;
         user_continue_url = encodeURIComponent(user_continue_url);
         
         loginUrl += "?continue_url="+user_continue_url;
