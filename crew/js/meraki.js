@@ -47,7 +47,7 @@ function authUser(){
 
     //const uniqueID = generateUniqueID();
     const uniqueID = btoa(data.email);
-    setCookie(cookieName, uniqueID, 24);
+    setCookie(cookieName, uniqueID, 36);
 
     window.location.href = loginUrl;
 }
